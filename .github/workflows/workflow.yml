@@ -1,0 +1,31 @@
+name: build-gem
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      id-token: write
+      contents: write
+    
+    steps:
+      
+      # Clone the source code on the runner
+      - uses: actions/checkout@v3
+      
+      # Perform setup for Ruby 2.7
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+          rubygems: latest
+          bundler-cache: true
+      
+      # Build the gem
+      - run: gem build jekyll-theme-dashboard.gemspec
+      
+      # Publish the gem to RubyGems when a new release is tagged
+      - if: startsWith(github.ref, 'refs/tags')
+        uses: rubygems/release-gem@v1
+        with:
+          attestations: false
+          await-release: false

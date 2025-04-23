@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+@media only screen and (max-width: 991.99px)
+{
+	html {
+		font-size: 0.9rem;
+	}
+	
+	.related {
+		width: 80%;
+	}
+}
+
+@media only screen and (max-width: 576px)
+{
+	.dashboard-grid {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	
+	.related ul.related-links {
+		flex-direction: column;
+	}
+}
+
+@media only screen and (min-width: 576.1px)
+{
+	.dashboard-grid {
+		grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+	}
+	
+	.group-cards {
+		grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	}
+}
+
+@media (prefers-color-scheme: dark)
+{
+	body {
+		background-color: #000;
+	}
+	
+	.group, .related {
+		background-color: var(--background-dark, var(--background, transparent));
+	}
+	
+	.group .group-header, .related .related-header, .related ul.related-links li a {
+		color: var(--text-dark, var(--text, #fff));
+	}
+	
+	.group-cards .card, .dashboard-grid .card-header
+	{
+		background-color: #35393b;
+		color: #fff;
+	}
+	
+	.group-cards .card-body, .group-cards .card ul, .group-cards .card ul li {
+		background-color: #222426;
+	}
+	
+	.group-cards .card ul li a {
+		color: #6bb2ff;
+	}
+	
+	.list-group-item summary::marker, .list-group-item details p {
+		color: #ddd;
+	}
+	
+	.list-group-item {
+		border: 1px solid rgba(255,255,255,0.125);
+	}
+}

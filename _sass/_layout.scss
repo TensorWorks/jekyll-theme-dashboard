@@ -1,0 +1,196 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+@media not print {
+	
+	html, body
+	{
+		scroll-behavior: smooth;
+		min-height: 100%;
+	}
+}
+
+html, body
+{
+	margin: 0;
+	padding: 0;
+}
+
+.logo
+{
+	text-align: center;
+	margin: 3rem 0;
+}
+
+.logo img
+{
+	width: 25rem;
+	max-width: 90%;
+}
+
+.related-wrapper
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding-bottom: 3rem;
+}
+
+.related
+{
+	width: 50%;
+	padding-bottom: 0.5rem;
+}
+
+.dashboard-grid, .group-cards
+{
+	box-sizing: border-box;
+	width: 100%;
+	display: grid;
+	grid-auto-rows: minmax(1rem, auto);
+	grid-auto-flow: dense;
+}
+
+.dashboard-grid
+{
+	gap: 2rem;
+	padding: 2rem;
+	padding-top: 0;
+}
+
+.group-cards
+{
+	gap: 1rem;
+}
+
+.group-cards.has-background {
+	padding: 1rem;
+}
+
+.group-header + .group-cards.has-background {
+	padding-top: 0;
+}
+
+.dashboard-grid .group, .group-cards .card {
+	align-self: start;
+}
+
+.list-group-item {
+	position: relative;
+}
+
+.list-group-item summary, .list-group-item a, .list-group-item details p {
+	padding: 0.75rem 1.25rem;
+}
+
+.group-icon-wrapper, .group-icon-wrapper picture,
+.list-group-item .link-icon-wrapper, .list-group-item .link-icon-wrapper picture,
+.related-links .link-icon-wrapper, .related-links .link-icon-wrapper picture
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.group-icon-wrapper
+{
+	width: 2rem;
+	height: 2rem;
+	margin-right: 1rem;
+}
+
+.group-icon-wrapper.icon-only {
+	margin-right: 0;
+}
+
+.group-icon-wrapper .group-icon
+{
+	max-width: 2rem;
+	max-height: 2rem;
+}
+
+.list-group-item .link-icon-wrapper, .related-links .link-icon-wrapper {
+	margin-left: 1.25rem;
+}
+
+.list-group-item .link-icon-wrapper, .list-group-item .link-icon-wrapper picture,
+.related-links .link-icon-wrapper, .related-links .link-icon-wrapper picture
+{
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.list-group-item .link-icon, .related-links .link-icon
+{
+	max-width: 1.5rem;
+	max-height: 1.5rem;
+}
+
+.group-header, .related-header, .list-group-item .link-header, .related ul.related-links, .related ul.related-links li
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.related ul.related-links {
+	justify-content: center;
+}
+
+.related ul.related-links, .related ul.related-links li
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.related ul.related-links li {
+	padding: 1rem 2rem;
+}
+
+.related ul.related-links li a {
+	padding-left: 0.75rem;
+}
+
+.list-group-item summary
+{
+	display: list-item !important;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.list-group-item a
+{
+	display: block;
+	padding-right: 2.75rem;
+}
+
+.list-group-item .link-icon + a {
+	padding-left: 0.75rem;
+}
+
+.card-grid
+{
+	display: grid;
+	grid-auto-rows: minmax(1rem, auto);
+	padding: 2rem;
+	gap: 2rem;
+}
+
+.card-grid a {
+	text-align: center;
+}
+
+.card-grid a .icon {
+	font-size: 5rem;
+}
+
+.card-grid a img
+{
+	width: 100%;
+	max-width: 5rem;
+}

@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+@import 'thirdparty/bootstrap.min.scss';
+@import 'layout';
+
+.group, .related
+{
+	background-color: var(--background, transparent);
+	border-radius: 0.5rem;
+}
+
+.group .group-header, .related .related-header, .related ul.related-links li a {
+	color: var(--text, #000);
+}
+
+.group .group-header, .related .related-header
+{
+	font-size: 1.5rem;
+	font-weight: 600;
+	justify-content: center;
+	padding: 2rem 1rem;
+}
+
+.related .related-header
+{
+	font-size: 1.25rem;
+	padding-top: 1.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.dashboard-grid .card-header
+{
+	background-color: #eee;
+	font-size: 1.1rem;
+}
+
+.dashboard-grid .list-group-item.link {
+	padding: 0;
+}
+
+.list-group-item summary::marker, .list-group-item details p {
+	color: #555;
+}
+
+.list-group-item summary.fa::marker
+{
+	/* Make the marker the "regular" variant of the FontAwesome `question-circle` icon */
+	font-weight: 400;
+	content: "\f059";
+}
+
+.list-group-item details[open] summary.fa::marker
+{
+	/* Make the marker the "solid" variant of the FontAwesome `question-circle` icon */
+	font-weight: 900;
+}
+
+.list-group-item details p
+{
+	font-size: 0.9rem;
+	font-style: italic;
+	padding-top: 0;
+	margin: 0;
+}
+
+@import 'responsive';

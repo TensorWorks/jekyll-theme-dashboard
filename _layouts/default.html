@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>{{ site.title | escape }}</title>
+		
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<link rel="icon" type="image/svg+xml" href="{% if site.theme-settings.favicon and site.theme-settings.favicon.svg %}{{ site.theme-settings.favicon.svg | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/favicon.svg{% endif %}">
+		<link rel="icon" type="image/png" href="{% if site.theme-settings.favicon and site.theme-settings.favicon.png %}{{ site.theme-settings.favicon.png | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/favicon.png{% endif %}">
+		<link rel="apple-touch-icon" type="image/png" href="{% if site.theme-settings.favicon and site.theme-settings.favicon.png %}{{ site.theme-settings.favicon.png | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/favicon.png{% endif %}">
+		
+		<meta property="og:title" content="{{ site.title | escape }}">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="{{ site.url | uri_escape }}{{ page.url | uri_escape }}">
+		
+		{% if site.theme-settings.fontawesome.kit %}
+		<script src="{{ site.theme-settings.fontawesome.kit | uri_escape }}" crossorigin="anonymous"></script>
+		{% elsif site.theme-settings.fontawesome.local != true %}
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+		{% endif %}
+		
+		{% include hooks/head-posthook.html %}
+		
+	</head>
+	
+	<body>
+		
+		{% include hooks/body-prehook.html %}
+		
+		<p class="logo">
+			<picture>
+				{% if site.theme-settings.logo.dark %}<source srcset="{{ site.theme-settings.logo.dark | uri_escape }}" media="(prefers-color-scheme: dark)">{% endif %}
+				<img src="{% if site.theme-settings.logo.default %}{{ site.theme-settings.logo.default | uri_escape }}{% else %}{{ "/" | relative_url }}assets/images/logo.svg{% endif %}" alt="{{ site.title | escape }}">
+			</picture>
+		</p>
+		
+		{% if site.data.related and site.data.related.links %}
+		<div class="related-wrapper">
+			<div class="related" style="{% if site.data.related.background %}--background: {{ site.data.related.background | escape }};{% endif %} {% if site.data.related.background-dark %}--background-dark: {{ site.data.related.background-dark | escape }};{% endif %} {% if site.data.related.text %}--text: {{ site.data.related.text | escape }};{% endif %} {% if site.data.related.text-dark %}--text-dark: {{ site.data.related.text-dark | escape }};{% endif %}">
+				<div class="related-header">{% if site.data.related.title %}{{ site.data.related.title | escape }}{% else %}Related Dashboards{% endif %}</div>
+				
+				<ul class="related-links">
+				{% for link in site.data.related.links %}
+					
+					<li>
+						{% if link.icon %}
+							<span class="link-icon-wrapper">
+								
+								{% if link.icon-dark %}
+									<picture>
+										<source srcset="{{ "/" | relative_url }}assets/images/icons/{{ link.icon-dark | uri_escape }}" media="(prefers-color-scheme: dark)">
+										<img class="link-icon" src="{{ "/" | relative_url }}assets/images/icons/{{ link.icon | uri_escape }}">
+									</picture>
+								{% else %}
+									<img class="link-icon" src="{{ "/" | relative_url }}assets/images/icons/{{ link.icon | uri_escape }}">
+								{% endif %}
+								
+							</span>
+						{% endif %}
+						
+						<a href="{{ link.url | uri_escape }}">{{ link.name | escape }}</a>
+					</li>
+					
+				{% endfor %}
+				</ul>
+			</div>
+		</div>
+		{% endif %}
+		
+		<div class="dashboard-grid">
+			
+			{% for group in site.data.cards %}
+				
+				<div class="group" style="{% if group.background %}--background: {{ group.background | escape }};{% endif %} {% if group.background-dark %}--background-dark: {{ group.background-dark | escape }};{% endif %} {% if group.text %}--text: {{ group.text | escape }};{% endif %} {% if group.text-dark %}--text-dark: {{ group.text-dark | escape }};{% endif %}">
+					
+					{% if group.group or group.icon %}
+					<div class="group-header">
+						
+						{% if group.icon %}
+							<span class="group-icon-wrapper{% if group.group %}{% else %} icon-only{% endif %}">
+								{% if group.icon-dark %}
+									<picture>
+										<source srcset="{{ "/" | relative_url }}assets/images/icons/{{ group.icon-dark | uri_escape }}" media="(prefers-color-scheme: dark)">
+										<img class="group-icon" src="{{ "/" | relative_url }}assets/images/icons/{{ group.icon | uri_escape }}">
+									</picture>
+								{% else %}
+									<img class="group-icon" src="{{ "/" | relative_url }}assets/images/icons/{{ group.icon | uri_escape }}">
+								{% endif %}
+							</span>
+						{% endif %}
+						
+						{{ group.group | escape }}
+						
+					</div>
+					{% endif %}
+					
+					<div class="group-cards{% if group.background or group.background-dark %} has-background{% endif %}">
+						
+						{% for card in group.cards %}
+							
+							{% case card.type %}
+								
+								{% when "link-list" %}
+									
+									<div class="card">
+										<h2 class="card-header">{{ card.name | escape }}</h2>
+										<ul class="list-group list-group-flush">
+										{% for link in card.links %}
+											
+											<li class="list-group-item link">
+												
+												<div class="link-header">
+													{% if link.icon %}
+														<span class="link-icon-wrapper">
+															
+															{% if link.icon-dark %}
+																<picture>
+																	<source srcset="{{ "/" | relative_url }}assets/images/icons/{{ link.icon-dark | uri_escape }}" media="(prefers-color-scheme: dark)">
+																	<img class="link-icon" src="{{ "/" | relative_url }}assets/images/icons/{{ link.icon | uri_escape }}">
+																</picture>
+															{% else %}
+																<img class="link-icon" src="{{ "/" | relative_url }}assets/images/icons/{{ link.icon | uri_escape }}">
+															{% endif %}
+															
+														</span>
+													{% endif %}
+													
+													<a href="{{ link.url | uri_escape }}">{{ link.name | escape }}</a>
+												</div>
+												
+												<div class="link-description">
+													<details{% if link.expanded == true %} open{% endif %}>
+														<summary class="fa"></summary>
+														<p>{% if link.description %}{{ link.description | escape }}{% else %}<em>(No description provided.)</em>{% endif %}</p>
+													</details>
+												</div>
+												
+											</li>
+											
+										{% endfor %}
+										</ul>
+									</div>
+								
+								{% when "icon-grid" %}
+									
+									{% assign isOdd = card.icons | size | modulo: 2 %}
+									{% if isOdd == 1 %}
+										{% assign columns = 3 %}
+									{% else %}
+										{% assign columns = 2 %}
+									{% endif %}
+									<div class="card">
+										<h2 class="card-header">{{ card.name | escape }}</h2>
+										<div class="card-body card-grid" style="grid-template-columns: repeat({{ columns }}, 1fr);">
+										{% for link in card.icons %}
+											<a href="{{ link.url | uri_escape }}">
+											
+											{% if link.icon %}
+												
+												<picture>
+													{% if link.icon-dark %}
+														<source srcset="{{ "/" | relative_url }}assets/images/icons/{{ link.icon-dark | uri_escape }}" media="(prefers-color-scheme: dark)">
+													{% endif %}
+													<img src="{{ "/" | relative_url }}assets/images/icons/{{ link.icon | uri_escape }}" alt="{{ link.name | escape }}" title="{{ link.name | escape }}">
+												</picture>
+												
+											{% else %}
+												{{ link.name | escape }}
+											{% endif %}
+												
+											</a>
+										{% endfor %}
+										</div>
+									</div>
+								
+								{% when "custom" %}
+									
+									<div class="card">
+										<h2 class="card-header">{{ card.name | escape }}</h2>
+										<div class="card-body{% if card.body-class %} {{ card.body-class | escape }}{% endif %}">
+											{% include {{ card.include }} %}
+										</div>
+									</div>
+									
+								{% else %}
+									Error! Unknown card type "{{ card.type | escape }}"!
+								
+							{% endcase %}
+							
+						{% endfor %}
+						
+					</div>
+					
+				</div>
+				
+			{% endfor %}
+			
+		</div>
+		
+		<script src="{{ "/" | relative_url }}assets/js/thirdparty/jquery-3.4.1.min.js"></script>
+		<script src="{{ "/" | relative_url }}assets/js/thirdparty/popper.min.js"></script>
+		<script src="{{ "/" | relative_url }}assets/js/thirdparty/bootstrap.min.js"></script>
+		
+		{% include hooks/body-posthook.html %}
+		
+	</body>
+</html>
