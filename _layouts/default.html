@@ -177,8 +177,8 @@
 								
 								{% when "custom" %}
 									
-									<div class="card">
-										<h2 class="card-header">{{ card.name | escape }}</h2>
+									<div class="card{% if card.card-class %} {{ card.card-class | escape }}{% endif %}">
+										<h2 class="card-header{% if card.header-class %} {{ card.header-class | escape }}{% endif %}">{{ card.name | escape }}</h2>
 										<div class="card-body{% if card.body-class %} {{ card.body-class | escape }}{% endif %}">
 											{% include {{ card.include }} %}
 										</div>

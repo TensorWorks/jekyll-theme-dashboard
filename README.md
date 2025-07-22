@@ -160,7 +160,9 @@ The theme displays information as a series of grouped cards, which must be speci
       # (ONLY USED WHEN TYPE IS "custom": the HTML file from the `_include` directory that provides the card body contents)
       include: custom-card-body.html
       
-      # (OPTIONAL, AND ONLY USED WHEN TYPE IS "custom": a custom CSS class to add to the card body, defaults to no class)
+      # (OPTIONAL, AND ONLY USED WHEN TYPE IS "custom": CSS classes to add to the card, its header and its body, all default to no class)
+      card-class: my-custom-class
+      header-class: my-custom-class
       body-class: my-custom-class
 ```
 
