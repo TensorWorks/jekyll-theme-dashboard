@@ -41,7 +41,9 @@ html, body
 
 .related
 {
-	width: 50%;
+	width: fit-content;
+	min-width: 50%;
+	max-width: calc(100vw - 4rem);
 	padding-bottom: 0.5rem;
 }
 
